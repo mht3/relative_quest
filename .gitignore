@@ -1,1 +1,2 @@
-data/*
+data/1000Genomes
+code/__pycache__/*
