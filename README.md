@@ -19,7 +19,27 @@ takes in the length and number of shared segments between individuals and estima
 
 ## Instructions
 
-To do (installing germline, test example, dataset)
+you can install `rquest` with the following command:
+
+```
+python setup.py install
+```
+
+Note: if you do not have root access, you can run the command above with additional options to install locally:
+```
+python setup.py install --user
+```
+
+If the install was successful, typing `rquest --help` should show a useful message.
+
+# Basic usage
+
+The basic usage of `rquest` is:
+
+```
+rquest in.ped in.map
+```
+
 
 ### Test Example
 
