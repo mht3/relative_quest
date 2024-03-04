@@ -23,7 +23,7 @@ To do (installing germline, test example, dataset)
 
 ### Test Example
 
-To do (instructions for lwk dataset)
+To do (instructions for lwk dataset). Should be easy to run for peer reviewers.
 
 ### Dataset
 
