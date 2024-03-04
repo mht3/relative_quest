@@ -19,7 +19,7 @@ takes in the length and number of shared segments between individuals and estima
 
 ## Instructions
 
-you can install `rquest` with the following command:
+you can install `relative_quest` with the following command:
 
 ```
 python setup.py install
@@ -30,14 +30,14 @@ Note: if you do not have root access, you can run the command above with additio
 python setup.py install --user
 ```
 
-If the install was successful, typing `rquest --help` should show a useful message.
+If the install was successful, typing `relative_quest --help` should show a useful message.
 
 # Basic usage
 
-The basic usage of `rquest` is:
+The basic usage of `relative_quest` is:
 
 ```
-rquest in.ped in.map
+relative_quest in.ped in.map
 ```
 
 
