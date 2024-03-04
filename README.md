@@ -8,14 +8,14 @@ takes in the length and number of shared segments between individuals and estima
 
 ```code/```:
 
-- ```ersa.py```: Main code for ERSA MLE calculations. 
+- ```ersa.py```: Main code for ERSA calculations given the output data from GERMLINE. 
 - ```ibd_results.py```: Function to visualize IBD predictions from both plink and relative quest. 
 - ```likelihoods.py```: Helper python file for `ersa.py`. Calculates the log-likelihoods for the null and alternate hypothesis. 
 
 ```data/```:
 
 - ```test/```: Location of test inputs for GERMLINE and ERSA 
-- ```1000Genomes```: Location for all 1000Genomes data. See "Instructions" on how to download this data.
+- ```1000Genomes/```: Location for all 1000Genomes data. See "Instructions" on how to download this data.
 
 ## Instructions
 
