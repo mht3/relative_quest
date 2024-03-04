@@ -2,7 +2,7 @@ import argparse
 import typer
 def main():
     parser=argparse.ArgumentParser(
-        prog = "rquest",
+        prog = "relative_quest",
         description = "Command-line tool to perform relative finding using GERMLINE and ESRA"
     )
 
