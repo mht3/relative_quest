@@ -2,7 +2,6 @@ import numpy as np
 from scipy import stats
 import pandas as pd
 from likelihoods import NullHypothesis, AlternateHypothesis
-
 class ERSA:
     def __init__(self, match_file, lambda_val=2, threshold=2.5, \
                  theta=3.12, max_d=10, alpha=1., out='ersa_ibd.genome'):
