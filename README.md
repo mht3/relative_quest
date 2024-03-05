@@ -49,7 +49,7 @@ relative_quest in.ped in.map
 
 
 ### Test Example
-`relative_quest` takes a .ped file and a and .map file as input (both are required). Here are the commands you can run
+`relative_quest` takes a .ped file and a .map file as input (both are required). Here are the commands you can run
 to create these files:
 
 To create .ped and .map files from bfiles, here is an example command:
