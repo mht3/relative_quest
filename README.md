@@ -54,12 +54,12 @@ to create these files:
 
 To create .ped and .map files from bfiles, here is an example command:
 ```
-plink --bfile ps2_ibd.lwk --recode --out lwk_sample
+plink --bfile ps2_ibd.lwk --recode 12 --out lwk_sample
 ```
 
 To create .ped and .map files from a vcf file, here is an example command:
 ```
-plink --vcf ALL.chr9.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz --recode --out chr9_sample
+plink --vcf ALL.chr9.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz --recode 12 --out chr9_sample
 ```
 
 Once the .ped and .map files have been generated, you can run the `relative_quest` command with the file parameters
