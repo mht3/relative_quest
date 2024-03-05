@@ -1,12 +1,19 @@
-# relative_quest
+# Relative Quest
+
+## Overview
 Relative Quest is a tool that explores kinship using GERMLINE combined with Estimations of Recent Shared Ancestry (ERSA). GERMLINE is an algorithm for determining the length and number of shared segments of IBD between pairs of individuals. ERSA
 takes in the length and number of shared segments between individuals and estimates the shared ancestry using a maximum-likelihood estimation. Our goal is to encapsulate these methods into a command line tool similar to the ```plink --genome``` command. 
 
+## Team
+The members working on this project are:
+1. Aashish Bhole, Grad Student, Computer Science and Engineering
+2. Arjun Badami, Grad Student, Computer Science and Engineering
+3. Matthew Taylor, Grad Student, Computer Science and Engineering
 
 ## Code Structure
 ```relative_quest/``` contains:
 
-```code/```:
+```codes/```:
 
 - ```ersa.py```: Main code for ERSA calculations given the output data from GERMLINE. 
 - ```ibd_results.py```: Function to visualize IBD predictions from both plink and relative quest. 
