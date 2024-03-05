@@ -44,7 +44,7 @@ If the install was successful, typing `relative_quest --help` should show a usef
 The basic usage of `relative_quest` is:
 
 ```
-relative_quest in.ped in.map
+relative_quest in.ped in.map -out out_prefix
 ```
 
 
