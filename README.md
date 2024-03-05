@@ -39,7 +39,7 @@ python setup.py install --user
 
 If the install was successful, typing `relative_quest --help` should show a useful message.
 
-# Basic usage
+## Basic usage
 
 The basic usage of `relative_quest` is:
 
@@ -73,4 +73,6 @@ LWK GERMLINE input files (.map & .ped): [here](https://drive.google.com/file/d/1
 
 ## Remaining Work
 
-To do (remaining work and challenges)
+1. Polish the README.md
+2. Parse the ERSA output dictionary to give kinship/IBD values
+3. Add comparison of Relative Quest results with Plink for a subset of population from 1000 Genomes
