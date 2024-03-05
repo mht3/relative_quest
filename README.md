@@ -49,9 +49,20 @@ relative_quest in.ped in.map
 
 
 ### Test Example
+`relative_quest` takes a .ped file and a and .map file as input (both are required). Here are the commands you can run
+to create these files:
 
-To do (instructions for lwk dataset). Should be easy to run for peer reviewers.
+To create .ped and .map files from bfiles, here is an example command:
+```
+plink --bfile ps2_ibd.lwk --recode --out lwk_sample
+```
 
+To create .ped and .map files from a vcf file, here is an example command:
+```
+plink --vcf ALL.chr9.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz --recode --out chr9_sample
+```
+
+Once the .ped and .map files have been generated, you can run the `relative_quest` command with the file parameters
 ### Dataset
 
 Download 1000Genomes [here](https://drive.google.com/file/d/1CPK7M0g62NIsAbrEgZ3WhLuMi04KhnXu/view?usp=sharing).

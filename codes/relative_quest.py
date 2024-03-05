@@ -3,11 +3,11 @@ import typer
 def main():
     parser=argparse.ArgumentParser(
         prog = "relative_quest",
-        description = "Command-line tool to perform relative finding using GERMLINE and ESRA"
+        description = "Command-line tool to perform relative finding using GERMLINE and ERSA"
     )
 
-    parser.add_argument("matchf", help="Match file", type=str)
-
+    parser.add_argument("mapfile", help=".map file", type=str)
+    parser.add_argument("pedfile", help=".ped file", type=str)
     args = parser.parse_args()
     typer.echo(args.matchf)
 
