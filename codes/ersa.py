@@ -1,7 +1,8 @@
 import numpy as np
 from scipy import stats
 import pandas as pd
-from likelihoods import NullHypothesis, AlternateHypothesis
+from .likelihoods import NullHypothesis, AlternateHypothesis
+
 class ERSA:
     def __init__(self, match_file, lambda_val=2, threshold=2.5, \
                  theta=3.12, max_d=10, alpha=1., out='ersa_ibd.genome'):
@@ -195,7 +196,7 @@ class ERSA:
 
 if __name__ == '__main__':
     # germline outputs a .match file
-    match_file = 'data/test/germline/expected.match'
+    match_file = '../data/test/germline/expected.match'
     ersa = ERSA(match_file, threshold=2.5)
     # print(ersa.data)
     ersa.predict_ibd()
