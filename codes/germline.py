@@ -23,7 +23,7 @@ class GERMLINE:
         self.out = out
 
     def perform_germline(self):
-        command = "germline -silent -input " + self.pedfile + " " + self.mapfile + " -output " + self.out
+        command = ["germline","-silent","-input",self.pedfile,self.mapfile,"-output",self.out]
         ret = subprocess.run(command)
         return ret
 

@@ -38,27 +38,28 @@ def main():
         #CALL GERMLINE FOR EACH PAIR OF INPUT FILES:
         for mf in mapfiles:
             prefix = mf[:len(mf)-4]
-            pf = prefix + '.map'
-            pf_path = args.inputdir + '\\' + pf
+            pf = prefix + '.ped'
+            pf_path = os.path.join(args.inputdir,pf)
             if not os.path.isfile(pf_path):
                 typer.echo("ERROR!! NO MATCHING .ped FILE FOR .map FILE. PLEASE CHECK INPUT FILES")
                 return
             #CALL GERMLINE
-            outputfilesprefix = args.inputdir + "\\" + prefix + "_germline"
-            mf_path = args.inputdir + "\\" + mf
-            pf_path = args.inputdir + "\\" + pf
+            outputfilesprefix = os.path.join(args.inputdir,prefix + "_germline")
+            mf_path = os.path.join(args.inputdir,mf)
+            pf_path = os.path.join(args.inputdir,pf)
             germline = GERMLINE(mf_path, pf_path, outputfilesprefix)
             ret = germline.perform_germline()
             typer.echo(ret)
-    except:
+    except Exception as ex:
         typer.echo("ERROR IN GERMLINE!!")
+        typer.echo(ex)
         return
 
 
     #CONCATENATE .match FILES
     allfiles = os.listdir(args.inputdir)
-    matchfiles = [f for f in allfiles if f.endswith('.match')]
-    finalmatchfile = args.inputdir + "\\expected.match"
+    matchfiles = [os.path.join(args.inputdir,f) for f in allfiles if f.endswith('.match')]
+    finalmatchfile = os.path.join(args.inputdir,"expected.match")
     with open(finalmatchfile, 'w') as outfile:
         for fname in matchfiles:
             with open(fname) as infile:

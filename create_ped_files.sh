@@ -2,7 +2,7 @@
 
 # Check if correct number of arguments are provided
 if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <input_prefix> <output_prefix>"
+    echo "Usage: $0 <input_genotype_data_file> <output_directory_prefix>"
     exit 1
 fi
 
