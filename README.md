@@ -65,7 +65,7 @@ To create .ped and .map files from bfiles/vcf, use the script provided:
 
 Example: To create .ped and .map files from a bfile for test data ps2_ibd.lwk in the ped_maps directory, the command would be:
 ```
-./create_ped_files.sh data/plink/ps2_ibd.lwk ped_maps/lwk
+./create_ped_files.sh data/test/plink/ps2_ibd.lwk data/test/ped_maps/lwk
 ```
 
 Once the .ped and .map files have been generated, you can run the `relative_quest` command with the file parameters
