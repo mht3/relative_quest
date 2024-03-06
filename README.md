@@ -26,6 +26,12 @@ The members working on this project are:
 
 ## Instructions
 
+First, install the required Python libraries using pip. We recommend creating a virtual pip or conda environment first before running this command. 
+
+```
+pip install -r requirements.txt
+```
+
 you can install `relative_quest` with the following command:
 
 ```
