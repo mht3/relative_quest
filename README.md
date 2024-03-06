@@ -58,14 +58,14 @@ relative_quest in.ped in.map --out out_prefix
 `relative_quest` takes a .ped file and a .map file as input (both are required). Here are the commands you can run
 to create these files:
 
-To create .ped and .map files from bfiles, here is an example command:
+To create .ped and .map files from bfiles/vcf, use the script provided:
 ```
-plink --bfile ps2_ibd.lwk --recode 12 --out lwk_sample
+./create_ped_files.sh <input_genotype_data_file> <output_directory_prefix>
 ```
 
-To create .ped and .map files from a vcf file, here is an example command using 1000Genomes data for chromosome 9:
+Example: To create .ped and .map files from a bfile for test data ps2_ibd.lwk in the ped_maps directory, the command would be:
 ```
-plink --vcf ALL.chr9.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz --recode 12 --out chr9_sample
+./create_ped_files.sh data/plink/ps2_ibd.lwk ped_maps/lwk
 ```
 
 Once the .ped and .map files have been generated, you can run the `relative_quest` command with the file parameters
