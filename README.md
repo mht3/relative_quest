@@ -88,7 +88,7 @@ To create .ped and .map files from a bfile for test data ps2_ibd.lwk in the ped_
 Once the .ped and .map files have been generated, you can run the `relative_quest` command with the `data/test/ped_maps` folder that was filled.
 
 ```
-relative_quest data/test/ped_maps data/test/results/
+relative_quest data/test/ped_maps -o data/test/results/
 ```
 
 ### Dataset
