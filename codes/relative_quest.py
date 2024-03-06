@@ -11,27 +11,25 @@ def main():
     )
 
     parser.add_argument("inputdir", help="Directory with all input .map and .ped files", type=str)
-    #parser.add_argument("pedfile", help=".ped file", type=str)
 
     parser.add_argument("-o", "--out", help="Output prefix" \
                                             "Default: relative_quest", metavar="FILE", type=str)
 
     args = parser.parse_args()
 
-    #CHECK VALID FILE PATHS
+    #CHECK VALID DIRECTORY
     if not os.path.exists(args.inputdir):
         typer.echo("INVALID PATH")
         return
 
-    '''
-    if not os.path.isfile(args.pedfile):
-        typer.echo("INVALID .ped FILE/PATH")
-        return
-    '''
+
     allfiles = os.listdir(args.inputdir)
     mapfiles = [f for f in allfiles if f.endswith('.map')]
     pedfiles = [f for f in allfiles if f.endswith('.ped')]
 
+    if(len(mapfiles) != len(pedfiles)):
+        typer.echo("ERROR! Not equal number of .map and .ped files in input directory")
+        return
 
     if args.out is None:
         args.out = "relative_quest"
@@ -43,12 +41,15 @@ def main():
             pf = prefix + '.map'
             pf_path = args.inputdir + '\\' + pf
             if not os.path.isfile(pf_path):
-                typer.echo("ERROR!! NO MATCHING .map FILE FOR .ped FILE. PLEASE CHECK INPUT FILES")
+                typer.echo("ERROR!! NO MATCHING .ped FILE FOR .map FILE. PLEASE CHECK INPUT FILES")
                 return
-            #CALL GERMINE
+            #CALL GERMLINE
             outputfilesprefix = args.inputdir + "\\" + prefix + "_germline"
-            germline = GERMLINE(mf, pf, outputfilesprefix)
-            germline.perform_germline()
+            mf_path = args.inputdir + "\\" + mf
+            pf_path = args.inputdir + "\\" + pf
+            germline = GERMLINE(mf_path, pf_path, outputfilesprefix)
+            ret = germline.perform_germline()
+            typer.echo(ret)
     except:
         typer.echo("ERROR IN GERMLINE!!")
         return
@@ -56,7 +57,7 @@ def main():
 
     #CONCATENATE .match FILES
     allfiles = os.listdir(args.inputdir)
-    matchfiles = [f for f in allfiles if f.endswith('.map')]
+    matchfiles = [f for f in allfiles if f.endswith('.match')]
     finalmatchfile = args.inputdir + "\\expected.match"
     with open(finalmatchfile, 'w') as outfile:
         for fname in matchfiles:
