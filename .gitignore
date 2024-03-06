@@ -1,6 +1,5 @@
 data/1000Genomes
-# data/test
-
+data/test
 codes/__pycache__/*
 build/
 dist/
