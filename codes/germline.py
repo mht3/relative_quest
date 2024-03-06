@@ -2,6 +2,8 @@ import numpy as np
 from scipy import stats
 import pandas as pd
 import os
+import shlex
+import subprocess
 class GERMLINE:
     def __init__(self, mapfile, pedfile, out='relative_quest'):
         '''
@@ -21,8 +23,8 @@ class GERMLINE:
 
     def perform_germline(self):
         command = "germline -input " + self.pedfile + " " + self.mapfile + " -output " + self.out
-        os.system(command)
-
+        #os.system(command)
+        subprocess.run(shlex.split(command))
 
 if __name__ == '__main__':
     # germline outputs a .match file

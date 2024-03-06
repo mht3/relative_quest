@@ -100,7 +100,7 @@ class ERSA:
 
         # sort in ascending order of length
         for pair in self.data:
-            self.data[pair] = sorted(self.data[pair])
+            self.data[pair] = sorted(self.data[pair], reverse=True)
 
     @staticmethod
     def likelihood_ratio_test(h_0, h_A, alpha):
