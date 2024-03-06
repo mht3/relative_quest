@@ -6,9 +6,9 @@ takes in the length and number of shared segments between individuals and estima
 
 ## Team
 The members working on this project are:
-1. Aashish Bhole, Grad Student, Computer Science and Engineering
-2. Arjun Badami, Grad Student, Computer Science and Engineering
-3. Matthew Taylor, Grad Student, Computer Science and Engineering
+- Aashish Bhole, Grad Student, Computer Science and Engineering
+- Arjun Badami, Grad Student, Computer Science and Engineering
+- Matthew Taylor, Grad Student, Computer Science and Engineering
 
 ## Code Structure
 ```relative_quest/``` contains:
@@ -26,13 +26,29 @@ The members working on this project are:
 
 ## Instructions
 
+### Required Libraries
 First, install the required Python libraries using pip. We recommend creating a virtual pip or conda environment first before running this command. 
 
 ```
 pip install -r requirements.txt
 ```
 
-you can install `relative_quest` with the following command:
+### Installing GERMLINE
+Next, add the GERMLINE build to your path variable. The build is located in the `bin` folder. Assuming that you are inside the `relative_quest` folder, run the following command:
+
+```
+export PATH=$PATH:$PWD/bin/Linux
+```
+
+To test to see if GERMLINE is working, type:
+
+```
+germline -h
+```
+
+### Installing relative_quest
+
+You can install `relative_quest` with the following command:
 
 ```
 python setup.py install
