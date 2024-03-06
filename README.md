@@ -69,7 +69,7 @@ The basic usage of `relative_quest` is:
 relative_quest ped_map_folder --out out_prefix
 ```
 
-Note that `ped_map_folder` is simply a folder containing all the .ped and .map files. To make things easier, we created a script `create_ped_files.sh` that creates this folder from a given vcf file.
+Note that `ped_map_folder` is simply a folder containing all the .ped and .map files. To make things easier, we created a script `create_ped_files.sh` that creates this folder from a given binary file.
 
 To create .ped and .map files from bfiles/vcf, use the script provided:
 ```
