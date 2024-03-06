@@ -1,2 +1,6 @@
 data/1000Genomes
-code/__pycache__/*
+codes/__pycache__/*
+build/
+dist/
+relative_quest.egg-info/
+version.py
