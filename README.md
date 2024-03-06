@@ -66,25 +66,30 @@ If the install was successful, typing `relative_quest --help` should show a usef
 The basic usage of `relative_quest` is:
 
 ```
-relative_quest in.ped in.map --out out_prefix
+relative_quest ped_map_folder --out out_prefix
 ```
 
-
-### Test Example
-`relative_quest` takes a .ped file and a .map file as input (both are required). Here are the commands you can run
-to create these files:
+Note that `ped_map_folder` is simply a folder containing all the .ped and .map files. To make things easier, we created a script `create_ped_files.sh` that creates this folder from a given vcf file.
 
 To create .ped and .map files from bfiles/vcf, use the script provided:
 ```
 ./create_ped_files.sh <input_genotype_data_file> <output_directory_prefix>
 ```
 
-Example: To create .ped and .map files from a bfile for test data ps2_ibd.lwk in the ped_maps directory, the command would be:
+### Test Example
+`relative_quest` takes a folder containing .ped and .map files as input . Here are the commands you can run
+to create these files with the LWK dataset:
+
+To create .ped and .map files from a bfile for test data ps2_ibd.lwk in the ped_maps directory, the command would be:
 ```
 ./create_ped_files.sh data/test/plink/ps2_ibd.lwk data/test/ped_maps/lwk
 ```
 
-Once the .ped and .map files have been generated, you can run the `relative_quest` command with the file parameters
+Once the .ped and .map files have been generated, you can run the `relative_quest` command with the `data/test/ped_maps` folder that was filled.
+
+```
+relative_quest data/test/ped_maps data/test/results/
+```
 
 ### Dataset
 
