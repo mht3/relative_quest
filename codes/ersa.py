@@ -1,7 +1,7 @@
 import numpy as np
 from scipy import stats
 import pandas as pd
-from .likelihoods import NullHypothesis, AlternateHypothesis
+from likelihoods import NullHypothesis, AlternateHypothesis
 
 class ERSA:
     def __init__(self, match_file, lambda_val=2, threshold=2.5, \
@@ -74,11 +74,13 @@ class ERSA:
         germline_cols = ['FID1', 'IID1', 'FID2', 'IID2', 'CHR', 'bp_start', 'bp_end', \
                          'snp_start', 'snp_end', 'total_snp', 'length', 'length_unit', \
                          'snp_mismatch', 'homozygous1', 'homozygous2']
-        df = pd.read_csv(filename, delim_whitespace=True, names=germline_cols)
+        df = pd.read_csv(filename, sep='\s+', names=germline_cols)
         # filter out values less than threshold
         df = df[df['length'] >= self.threshold]
+
         # make sure all lengths are in centiMorgan like in the paper
-        assert np.all(df['length_unit'] == 'cM'), 'All segment lengths must be in cM'
+        assert (np.all(df['length_unit'] == 'cM') or np.all(df['length_unit'] == 'MB')), \
+            'All segment lengths must be in cM or MB'
 
         # create smaller dataframe to work with later
         self.data = {}
@@ -186,10 +188,11 @@ class ERSA:
                 lower_d, upper_d = self.confidence_interval(alternate_likelihoods, best_h_A_likelihood)
                 related_pairs[pair] = {'d': best_d, 'lower_d' : lower_d, 'upper_d': upper_d, 'n_a': best_n_a,\
                                        'total': len(s), 's': s}
+                # TODO Estimate relationship
+
                 # self.estimate_relationship()
             else:
                 unrelated_pairs.append(pair)
-
 
         # TODO write file same as plink format
         print(related_pairs)
@@ -198,5 +201,4 @@ if __name__ == '__main__':
     # germline outputs a .match file
     match_file = '../data/test/germline/expected.match'
     ersa = ERSA(match_file, threshold=2.5)
-    # print(ersa.data)
     ersa.predict_ibd()

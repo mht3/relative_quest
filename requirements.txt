@@ -2,3 +2,4 @@ typer==0.9.0
 numpy==1.26.4
 scipy==1.12.0
 pandas==2.2.1
+matplotlib==3.8.3
