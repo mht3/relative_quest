@@ -61,8 +61,8 @@ python setup.py install --user
 
 If the install was successful, typing `relative_quest --help` should show a useful message.
 
-### Installing GERMLINE
-Next, add the GERMLINE build to your path variable. The build is located in the `bin` folder. Assuming that you are inside the `relative_quest` folder, run the following command:
+### Environment Setup
+Next, add the GERMLINE build and relative_quest executable to your path variable. The build is located in the `bin` and the executable is in the `$HOME/.local/bin` folder if relative_quest was installed with `--user`. Assuming that you are inside the `relative_quest` folder, run the following command:
 
 ```
 export PATH=$PATH:$PWD/bin/Linux:$HOME/.local/bin
