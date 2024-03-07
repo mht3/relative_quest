@@ -22,8 +22,11 @@ class NullHypothesis:
 
         # calculate log-likelihood of sharing n segments
         # log of poisson distribution for single iid
-        n_p = -self.lambda_val + n * np.log(self.lambda_val) - np.log(math.factorial(n))
-
+        if n < 20:
+            n_p = -self.lambda_val + n * np.log(self.lambda_val) - np.log(math.factorial(n))
+        else:
+            # sterling's approximation
+            n_p = -self.lambda_val + n * np.log(self.lambda_val) - (n * np.log(n) - n)
         # calculate log-likelihood of set of segments s
         s_p = 0.
         for i in s:
