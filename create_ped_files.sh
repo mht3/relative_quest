@@ -13,7 +13,7 @@ output_prefix=$2
 if [[ "$input_prefix" == *"vcf"* ]]; then
     file_type_flag="--vcf"
 else
-    file_type_flag="--vcf"
+    file_type_flag="--bfile"
 fi
 
 # Iterate through chromosomes 1 to 22
