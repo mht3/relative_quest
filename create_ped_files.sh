@@ -10,13 +10,10 @@ input_prefix=$1
 output_prefix=$2
 
 # Determine file type
-if [[ "$input_prefix" == *"bed"* ]]; then
-    file_type_flag="--bfile"
-elif [[ "$input_prefix" == *"vcf"* ]]; then
+if [[ "$input_prefix" == *"vcf"* ]]; then
     file_type_flag="--vcf"
 else
-    echo "Input file type not recognized (neither BED nor VCF)"
-    exit 1
+    file_type_flag="--vcf"
 fi
 
 # Iterate through chromosomes 1 to 22
