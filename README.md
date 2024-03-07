@@ -114,6 +114,7 @@ LWK GERMLINE input files (.map & .ped): [here](https://drive.google.com/file/d/1
 
 ## Remaining Work
 
-1. Polish the README.md
-2. Parse the ERSA output dictionary to give kinship/IBD values
-3. Add comparison of Relative Quest results with Plink for a subset of population from 1000 Genomes
+1. Parse the ERSA output to give kinship.
+2. Add comparison of Relative Quest results with Plink for a subset of population from 1000 Genomes
+3. Add the command line utility flags for the ERSA parameters
+
