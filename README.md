@@ -33,19 +33,6 @@ First, install the required Python libraries using pip. We recommend creating a 
 pip install -r requirements.txt
 ```
 
-### Installing GERMLINE
-Next, add the GERMLINE build to your path variable. The build is located in the `bin` folder. Assuming that you are inside the `relative_quest` folder, run the following command:
-
-```
-export PATH=$PATH:$PWD/bin/Linux
-```
-
-To test to see if GERMLINE is working, type:
-
-```
-germline -h
-```
-
 ### Installing relative_quest
 
 You can install `relative_quest` with the following command:
@@ -60,6 +47,19 @@ python setup.py install --user
 ```
 
 If the install was successful, typing `relative_quest --help` should show a useful message.
+
+### Installing GERMLINE
+Next, add the GERMLINE build to your path variable. The build is located in the `bin` folder. Assuming that you are inside the `relative_quest` folder, run the following command:
+
+```
+export PATH=$PATH:$PWD/bin/Linux:$HOME/.local/bin
+```
+
+To test to see if GERMLINE is working, type:
+
+```
+germline -h
+```
 
 ## Basic usage
 
