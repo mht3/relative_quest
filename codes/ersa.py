@@ -199,9 +199,7 @@ class ERSA:
         relative_predictions = {}
         for pair in related_pairs:
             d = related_pairs[pair]['d']
-            s = related_pairs[pair]['s']
-            n = len(s)
-            n_a = related_pairs[pair]['d']
+            n_a = related_pairs[pair]['n_a']
             if d==4 and n_a > 25:
                 if relative_predictions.get('First Cousins', -1) == -1:
                     relative_predictions['First Cousins'] = []
