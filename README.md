@@ -5,6 +5,8 @@ This is the code repository for our CSE 284: Personal Genomics Winter 2024 Proje
 
 Relative Quest is a tool that explores kinship using GERMLINE combined with Estimations of Recent Shared Ancestry (ERSA). GERMLINE is an algorithm for determining the length and number of shared segments of IBD between pairs of individuals. ERSA takes in the length and number of shared segments between individuals and estimates the shared ancestry using a maximum-likelihood estimation. Our goal is to encapsulate these methods into a command line tool similar to the ```plink --genome``` command.
 
+This is a linux-based tool. For best results for the reviewers, please clone the repository on the DatHub cluster. Thanks!
+
 ## Team: Group 1
 The members working on this project are:
 - Aashish Bhole, Grad Student, Computer Science and Engineering
