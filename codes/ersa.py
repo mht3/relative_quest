@@ -4,7 +4,7 @@ import pandas as pd
 from .likelihoods import NullHypothesis, AlternateHypothesis
 
 class ERSA:
-    def __init__(self, match_file, lambda_val=2, threshold=2.5, \
+    def __init__(self, match_file, threshold=2.5, \
                  theta=3.12, max_d=10, alpha=1., out='ersa_ibd.genome'):
         '''
         params
@@ -30,7 +30,6 @@ class ERSA:
         # segment length > 2.5 cM achieves false-negative 
         # rate < 1% based upon germline.
         self.threshold = threshold
-        self.lambda_val = lambda_val
         self.theta = theta
         # read match file as pandas df
         self.read_germline(match_file)
@@ -101,8 +100,13 @@ class ERSA:
             self.data[data_key].append(length)
 
         # sort in ascending order of length
+        self.lambda_val = 0.
         for pair in self.data:
             self.data[pair] = sorted(self.data[pair], reverse=True)
+            self.lambda_val += len(self.data[pair])
+        # get lambda: mean of number segments shared
+        if len(self.data) > 0:
+            self.lambda_val /= len(self.data)
 
     @staticmethod
     def likelihood_ratio_test(h_0, h_A, alpha):
