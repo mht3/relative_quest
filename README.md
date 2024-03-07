@@ -26,8 +26,21 @@ The members working on this project are:
 
 ## Instructions
 
+### Clone the Repository
+First, clone the repository using the following command:
+
+```
+git clone https://github.com/mht3/relative_quest.git
+```
+
+Change directories into the `relative_quest` folder
+
+```
+cd relative_quest/
+```
+
 ### Required Libraries
-First, install the required Python libraries using pip. We recommend creating a virtual pip or conda environment first before running this command. 
+Once you are in the `relative_quest` folder, install the required Python libraries using pip. We recommend creating a virtual pip or conda environment first before running this command. 
 
 ```
 pip install -r requirements.txt
