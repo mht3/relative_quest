@@ -34,6 +34,7 @@ def main():
     if args.out is None:
         args.out = "relative_quest"
 
+    typer.echo("Running GERMLINE on input files...")
     try:
         #CALL GERMLINE FOR EACH PAIR OF INPUT FILES:
         for mf in mapfiles:
@@ -49,13 +50,14 @@ def main():
             pf_path = os.path.join(args.inputdir,pf)
             germline = GERMLINE(mf_path, pf_path, outputfilesprefix)
             ret = germline.perform_germline()
-            typer.echo(ret)
+            #typer.echo(ret)
     except Exception as ex:
         typer.echo("ERROR IN GERMLINE!!")
         typer.echo(ex)
         return
 
-
+    typer.echo("GERMLINE FINISHED")
+    typer.echo("ERSA STARTING...")
     #CONCATENATE .match FILES
     allfiles = os.listdir(args.inputdir)
     matchfiles = [os.path.join(args.inputdir,f) for f in allfiles if f.endswith('.match')]
@@ -70,7 +72,8 @@ def main():
     #CALL ERSA
     ersa = ERSA(match_file=finalmatchfile, out=args.out)
     ersa.predict_ibd()
-    typer.echo("SUCCESS! Output files have been created")
+    #print(ersa.lambda_val)
+    typer.echo("SUCCESS!")
 
 
 if __name__ == '__main__':
