@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 class NullHypothesis:
     '''
@@ -21,7 +22,7 @@ class NullHypothesis:
 
         # calculate log-likelihood of sharing n segments
         # log of poisson distribution for single iid
-        n_p = -self.lambda_val + n * np.log(self.lambda_val) - np.log(np.math.factorial(n))
+        n_p = -self.lambda_val + n * np.log(self.lambda_val) - np.log(math.factorial(n))
 
         # calculate log-likelihood of set of segments s
         s_p = 0.
@@ -72,7 +73,11 @@ class AlternateHypothesis:
             p_d = np.exp(-d * self.t / 100.)
             # get likelihood 2 individuals share n autosomal segments (poisson)
             lambda_val = (self.a * (self.r * d + self.c) * p_d) / (2 ** (d - 1))
-            n_a_val = -lambda_val + n * np.log(lambda_val) - np.log(np.math.factorial(n))
+            if n < 20:
+                n_a_val = -lambda_val + n * np.log(lambda_val) - np.log(math.factorial(n))
+            else:
+                # sterling's approximation
+                n_a_val = -lambda_val + n * np.log(lambda_val) - (n * np.log(n) - n)
             # exponential likelihood
             s_a_val = 0.
             for i in s_a:
