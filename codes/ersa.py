@@ -196,7 +196,29 @@ class ERSA:
                 unrelated_pairs.append(pair)
 
         # TODO write file same as plink format
-        print(related_pairs)
+        relative_predictions = {}
+        for pair in related_pairs:
+            d = related_pairs[pair]['d']
+            s = related_pairs[pair]['s']
+            n = len(s)
+            n_a = related_pairs[pair]['d']
+            if d==4 and n_a > 25:
+                if relative_predictions.get('First Cousins', -1) == -1:
+                    relative_predictions['First Cousins'] = []
+                relative_predictions['First Cousins'].append(pair)
+            elif d==2 and n_a > 75:
+                if relative_predictions.get('Siblings', -1) == -1:
+                    relative_predictions['Siblings'] = []
+                relative_predictions['Siblings'].append(pair)
+            elif d==3 and n_a > 50:
+                if relative_predictions.get('Avuncular', -1) == -1:
+                    relative_predictions['Avuncular'] = []
+                relative_predictions['Avuncular'].append(pair)
+            elif d==6 and n_a > 10:
+                if relative_predictions.get('Second Cousins', -1) == -1:
+                    relative_predictions['Second Cousins'] = []
+                relative_predictions['Second Cousins'].append(pair)
+        print(relative_predictions)
 
 if __name__ == '__main__':
     # germline outputs a .match file
