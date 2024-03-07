@@ -5,14 +5,11 @@ from .likelihoods import NullHypothesis, AlternateHypothesis
 
 class ERSA:
     def __init__(self, match_file, threshold=2.5, \
-                 theta=3.12, max_d=10, alpha=1., out='ersa_ibd.genome'):
+                 theta=3.12, max_d=10, alpha=0.1, out='ersa_ibd.genome'):
         '''
         params
             match_file: string
                 path to the GERMLINE output .match file.
-            lambda_val: float
-                poisson parameter representing mean number of segments
-                shared in a population.
             threshold: float
                 minimum segment length threshold in cM.
             theta: float
@@ -104,7 +101,7 @@ class ERSA:
         for pair in self.data:
             self.data[pair] = sorted(self.data[pair], reverse=True)
             self.lambda_val += len(self.data[pair])
-        # get lambda: mean of number segments shared
+        # get lambda: mean of number segments shared in population
         if len(self.data) > 0:
             self.lambda_val /= len(self.data)
 
