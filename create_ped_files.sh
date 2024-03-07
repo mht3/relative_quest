@@ -9,10 +9,20 @@ fi
 input_prefix=$1
 output_prefix=$2
 
+# Determine file type
+if [[ "$input_prefix" == *"bed"* ]]; then
+    file_type_flag="--bfile"
+elif [[ "$input_prefix" == *"vcf"* ]]; then
+    file_type_flag="--vcf"
+else
+    echo "Input file type not recognized (neither BED nor VCF)"
+    exit 1
+fi
+
 # Iterate through chromosomes 1 to 22
 for ((chr=1; chr<=22; chr++)); do
     echo "Processing chromosome $chr..."
-    plink --bfile "${input_prefix}" --chr "$chr" --recode 12 --out "${output_prefix}_chr${chr}"
+    plink "${file_type_flag}" "${input_prefix}" --chr "$chr" --recode 12 --out "${output_prefix}_chr${chr}"
 done
 
 echo "Done!"
