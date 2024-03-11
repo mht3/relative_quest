@@ -15,6 +15,13 @@ def main():
     parser.add_argument("-o", "--out", help="Output prefix" \
                                             "Default: relative_quest", metavar="FILE", type=str)
 
+    parser.add_argument("-thresh", "--thresh", help="ERSA Threshold Value", type=float)
+    parser.add_argument("-theta", "--theta", help="ERSA Theta Value", type=float)
+    parser.add_argument("-d", "--d", help="Maximum d (combined number of generations separating " 
+                                        "individuals from their ancestors)", type=int)
+    parser.add_argument("-a", "--alpha", help="ERSA Alpha Value", type=float)
+
+
     args = parser.parse_args()
 
     #CHECK VALID DIRECTORY
@@ -70,7 +77,22 @@ def main():
 
 
     #CALL ERSA
-    ersa = ERSA(match_file=finalmatchfile, out=args.out)
+    threshold = 2.5
+    theta = 3.12
+    max_d = 10
+    alpha = 0.1
+
+    if args.thresh is not None:
+        threshold = args.thresh
+    if args.theta is not None:
+        theta = args.theta
+    if args.d is not None:
+        max_d = args.d
+    if args.alpha is not None:
+        alpha = args.alpha
+
+    ersa = ERSA(match_file=finalmatchfile, threshold=threshold,
+                 theta=theta, max_d=max_d, alpha=alpha, out=args.out)
     ersa.predict_ibd()
     #print(ersa.lambda_val)
     typer.echo("SUCCESS!")
