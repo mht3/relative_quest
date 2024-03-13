@@ -39,7 +39,7 @@ def main():
         return
 
     if args.out is None:
-        args.out = "relative_quest"
+        args.out = "relative_quest.genome"
 
     typer.echo("Running GERMLINE on input files...")
     try:
@@ -93,9 +93,9 @@ def main():
 
     ersa = ERSA(match_file=finalmatchfile, threshold=threshold,
                  theta=theta, max_d=max_d, alpha=alpha, out=args.out)
-    ersa.predict_ibd()
-    #print(ersa.lambda_val)
-    typer.echo("SUCCESS!")
+    relative_predictions = ersa.predict_ibd()
+    typer.echo("SUCCESS! Found {} pairs of related individuals.".format(len(relative_predictions)))
+    typer.echo("Results written to {}.".format(args.out))
 
 
 if __name__ == '__main__':

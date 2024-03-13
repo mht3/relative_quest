@@ -156,6 +156,38 @@ class ERSA:
         else:
             return None, None
 
+    def write_kinship_results(self, related_pairs):
+        relative_predictions = {}
+        with open(self.out, 'w') as f:
+            header = "IID1,IID2,d_est,n_a,relatedness\n"
+            f.write(header)
+            for pair in related_pairs:
+                d = related_pairs[pair]['d']
+                n_a = related_pairs[pair]['n_a']
+                relatedness = None
+                # get iid1 and iid2
+                iid1, iid2 = pair.split('-')
+                if d==4 and n_a > 25:
+                    relatedness = 'First Cousins'
+                elif d==2 and n_a > 75:
+                    relatedness = 'Siblings'
+                elif d==3 and n_a > 50:
+                    relatedness = 'Avuncular'
+                elif d==6 and n_a > 10:
+                    relatedness = 'Second Cousins'
+                
+                if relatedness is not None:
+                    # add line to file
+                    new_entry = "{},{},{},{},{}\n".format(iid1, iid2, d, n_a, relatedness)
+                    f.write(new_entry)
+                    
+                    # add to dictionary
+                    if relative_predictions.get(relatedness, -1) == -1:
+                        relative_predictions[relatedness] = []
+                    relative_predictions[relatedness].append(pair)
+            
+        return relative_predictions
+
     def predict_ibd(self):
         unrelated_pairs = []
         related_pairs = {}
@@ -189,34 +221,12 @@ class ERSA:
                 lower_d, upper_d = self.confidence_interval(alternate_likelihoods, best_h_A_likelihood)
                 related_pairs[pair] = {'d': best_d, 'lower_d' : lower_d, 'upper_d': upper_d, 'n_a': best_n_a,\
                                        'total': len(s), 's': s}
-                # TODO Estimate relationship
-
-                # self.estimate_relationship()
             else:
                 unrelated_pairs.append(pair)
 
-        # TODO write file same as plink format
-        relative_predictions = {}
-        for pair in related_pairs:
-            d = related_pairs[pair]['d']
-            n_a = related_pairs[pair]['n_a']
-            if d==4 and n_a > 25:
-                if relative_predictions.get('First Cousins', -1) == -1:
-                    relative_predictions['First Cousins'] = []
-                relative_predictions['First Cousins'].append(pair)
-            elif d==2 and n_a > 75:
-                if relative_predictions.get('Siblings', -1) == -1:
-                    relative_predictions['Siblings'] = []
-                relative_predictions['Siblings'].append(pair)
-            elif d==3 and n_a > 50:
-                if relative_predictions.get('Avuncular', -1) == -1:
-                    relative_predictions['Avuncular'] = []
-                relative_predictions['Avuncular'].append(pair)
-            elif d==6 and n_a > 10:
-                if relative_predictions.get('Second Cousins', -1) == -1:
-                    relative_predictions['Second Cousins'] = []
-                relative_predictions['Second Cousins'].append(pair)
-        print(relative_predictions)
+        # predict kinship for related pairs and write to file
+        predictions = self.write_kinship_results(related_pairs)
+        return predictions
 
 if __name__ == '__main__':
     # germline outputs a .match file
