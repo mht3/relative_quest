@@ -100,7 +100,7 @@ class ERSA:
         self.lambda_val = 0.
         for pair in self.data:
             self.data[pair] = sorted(self.data[pair], reverse=True)
-            filtered = [i for i in s if i < 10.]
+            filtered = [i for i in self.data[pair] if i < 10.]
             self.lambda_val += len(filtered)
         # get lambda: mean of number segments shared in population
         if len(self.data) > 0:
