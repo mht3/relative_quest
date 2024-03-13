@@ -18,8 +18,7 @@ class NullHypothesis:
                 list of segment lengths
         '''
         # get number of shared segments
-        s_filtered = [i for i in s if i <= 10.]
-        n = len(s_filtered)
+        n = len(s)
 
         # calculate log-likelihood of sharing n segments
         # log of poisson distribution for single iid
@@ -27,7 +26,7 @@ class NullHypothesis:
 
         # calculate log-likelihood of set of segments s
         s_p = 0.
-        for i in s_filtered:
+        for i in s:
             # exponential approximation log likelihood for segment of length i
             s_p += -(i - self.t) / self.theta - np.log(self.theta)
 
