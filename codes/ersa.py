@@ -140,15 +140,18 @@ class ERSA:
                 relatedness = None
                 # get iid1 and iid2
                 iid1, iid2 = pair.split('-')
-                if d==4 and n_a > 25:
-                    relatedness = 'First Cousins'
-                elif d==2 and n_a > 75:
+
+                if d==2 and n_a > 60:
                     relatedness = 'Siblings'
-                elif d==3 and n_a > 50:
+                elif d==3 and n_a > 30:
                     relatedness = 'Avuncular'
-                elif d==6 and n_a > 10:
+                elif d==4 and n_a > 20:
+                    relatedness = 'First Cousins'
+                elif d==6 and n_a > 5:
                     relatedness = 'Second Cousins'
-                
+                elif d==8 and n_a > 2:
+                    relatedness = 'Third Cousins'
+
                 if relatedness is not None:
                     # add line to file
                     new_entry = "{},{},{},{},{}\n".format(iid1, iid2, d, n_a, relatedness)
