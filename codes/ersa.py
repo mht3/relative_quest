@@ -157,7 +157,7 @@ class ERSA:
             return None, None
 
     def write_kinship_results(self, related_pairs):
-        relative_predictions = {}
+        relatedness_count = 0
         with open(self.out, 'w') as f:
             header = "IID1,IID2,d_est,n_a,relatedness\n"
             f.write(header)
@@ -180,13 +180,9 @@ class ERSA:
                     # add line to file
                     new_entry = "{},{},{},{},{}\n".format(iid1, iid2, d, n_a, relatedness)
                     f.write(new_entry)
-                    
-                    # add to dictionary
-                    if relative_predictions.get(relatedness, -1) == -1:
-                        relative_predictions[relatedness] = []
-                    relative_predictions[relatedness].append(pair)
+                    relatedness_count += 1   
             
-        return relative_predictions
+        return relatedness_count
 
     def predict_ibd(self):
         unrelated_pairs = []
@@ -225,11 +221,13 @@ class ERSA:
                 unrelated_pairs.append(pair)
 
         # predict kinship for related pairs and write to file
-        predictions = self.write_kinship_results(related_pairs)
-        return predictions
+        num_related_pairs = self.write_kinship_results(related_pairs)
+
+        return num_related_pairs
 
 if __name__ == '__main__':
     # germline outputs a .match file
     match_file = '../data/test/germline/expected.match'
     ersa = ERSA(match_file, threshold=2.5)
-    ersa.predict_ibd()
+    # writes results to file
+    num_related_pairs = ersa.predict_ibd()

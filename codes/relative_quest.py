@@ -93,8 +93,8 @@ def main():
 
     ersa = ERSA(match_file=finalmatchfile, threshold=threshold,
                  theta=theta, max_d=max_d, alpha=alpha, out=args.out)
-    relative_predictions = ersa.predict_ibd()
-    typer.echo("SUCCESS! Found {} pairs of related individuals.".format(len(relative_predictions)))
+    num_related_pairs = ersa.predict_ibd()
+    typer.echo("SUCCESS! Found {} pairs of related individuals.".format(num_related_pairs))
     typer.echo("Results written to {}.".format(args.out))
 
 
