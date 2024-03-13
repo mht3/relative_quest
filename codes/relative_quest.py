@@ -80,7 +80,7 @@ def main():
     threshold = 2.5
     theta = 3.12
     max_d = 10
-    alpha = 0.1
+    alpha = 0.05
 
     if args.thresh is not None:
         threshold = args.thresh

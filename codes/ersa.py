@@ -5,7 +5,7 @@ from .likelihoods import NullHypothesis, AlternateHypothesis
 
 class ERSA:
     def __init__(self, match_file, threshold=2.5, \
-                 theta=3.12, max_d=10, alpha=0.1, out='ersa_ibd.genome'):
+                 theta=3.12, max_d=8, alpha=0.05, out='ersa_ibd.genome'):
         '''
         params
             match_file: string
