@@ -129,33 +129,6 @@ class ERSA:
         else:
             return False
 
-    def confidence_interval(self, h_As, best_h_A):
-        '''
-        Returns lower and upper bounds for d for the alternate hypothesis
-        params
-            h_As: list
-                All alternative hypothesis found for different d values
-            best_h_A: float
-                Best Alternative hypothesis
-        '''
-        lower_d = np.inf
-        upper_d = -np.inf
-        lower_found = False
-        upper_found = False
-        for h_A, d in h_As:
-            reject_hypothesis = self.likelihood_ratio_test(h_A, best_h_A, self.alpha)
-            if reject_hypothesis == False:
-                if d < lower_d:
-                    lower_d = d
-                    lower_found = True
-                elif d > upper_d:
-                    upper_d = d
-                    upper_found = True
-        if lower_found and upper_found:
-            return lower_d, upper_d
-        else:
-            return None, None
-
     def write_kinship_results(self, related_pairs):
         relatedness_count = 0
         with open(self.out, 'w') as f:
@@ -214,8 +187,7 @@ class ERSA:
             # logic for rejecting the null hypothesis
             reject_null = self.likelihood_ratio_test(h_0_likelihood, best_h_A_likelihood, self.alpha)
             if reject_null == True:
-                lower_d, upper_d = self.confidence_interval(alternate_likelihoods, best_h_A_likelihood)
-                related_pairs[pair] = {'d': best_d, 'lower_d' : lower_d, 'upper_d': upper_d, 'n_a': best_n_a,\
+                related_pairs[pair] = {'d': best_d, 'n_a': best_n_a,\
                                        'total': len(s), 's': s}
             else:
                 unrelated_pairs.append(pair)
