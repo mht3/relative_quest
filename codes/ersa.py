@@ -100,11 +100,13 @@ class ERSA:
         self.lambda_val = 0.
         for pair in self.data:
             self.data[pair] = sorted(self.data[pair], reverse=True)
-            filtered_pair = [i for i in self.data[pair] if i < 10.]
-            self.lambda_val += len(filtered_pair)
+            self.lambda_val += len(self.data[pair])
         # get lambda: mean of number segments shared in population
         if len(self.data) > 0:
             self.lambda_val /= len(self.data)
+        else:
+            # value used in paper
+            self.lambda_val = 3.12
 
     @staticmethod
     def likelihood_ratio_test(h_0, h_A, alpha):
